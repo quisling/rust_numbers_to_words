@@ -14,10 +14,14 @@ fn main()
 	input.truncate(string_length - 1);
 
 	for ( i, c ) in input.chars().enumerate(){
+
+		if i == 0 && c == '-'{output_string.push_str( "negative " ); continue; }
+		if i == 0 && c == '+'{output_string.push_str( "positive " ); continue; }
+
 		let natural_pos = input.len() - i; // Get the power of the digit.
 
-		if ! c.is_numeric(){
-			println!( " {} in {} contains not only numbers, please try again with only numbers ", c, input );
+		if ! c.is_numeric() && c != '-' && c != '+' {
+			println!( " {} in {} contains is not a number, please try again with only numbers ", c, input );
 			std::process::exit( 1 );
 		}
 
